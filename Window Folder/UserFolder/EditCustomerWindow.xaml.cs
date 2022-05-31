@@ -1,5 +1,4 @@
 ﻿using DU02Talalaev.Class_Folder;
-using DU02Talalaev.Window_Folder.AdminFolder;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -18,9 +17,9 @@ using System.Windows.Shapes;
 namespace DU02Talalaev.Window_Folder.UserFolder
 {
     /// <summary>
-    /// Логика взаимодействия для EditDefUserWindow.xaml
+    /// Логика взаимодействия для EditCustomerWindow.xaml
     /// </summary>
-    public partial class EditDefUserWindow : Window
+    public partial class EditCustomerWindow : Window
     {
         CBClass cB;
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=K306PC10\SQLEXPRESS;
@@ -28,12 +27,22 @@ namespace DU02Talalaev.Window_Folder.UserFolder
                                                         Integrated Security=True");
         SqlCommand SqlCommand;
         SqlDataReader dataReader;
-        public EditDefUserWindow()
+        public EditCustomerWindow()
         {
             InitializeComponent();
-            cB = new CBClass();
         }
-        private void EditBtn_Click(object sender, RoutedEventArgs e)
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new MenuUserWindow().ShowDialog();
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MBClass.ExitMB();
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -41,16 +50,17 @@ namespace DU02Talalaev.Window_Folder.UserFolder
                 SqlCommand =
                     new SqlCommand("Update " +
                     "dbo.[Customer] " +
-                    $"Set [Email] ='{LoginTb.Text}'," +
-                    $"[Password]='{PasswordTb.Text}'," +
-                    $"FirstName='{NameTb.Text}'," +
-                    $"LastName='{LastnameTb.Text}'," +
-                    $"IdCustomer='{RoleCb.SelectedValue.ToString()}' " +
-                    $"Where UserID='{VariableClass.UserId}'",
+                    $"Set LastNameCustomer ='{LoginTb.Text}'," +
+                    $"FirstNameCustomer='{PasswordTb.Text}'," +
+                    $"MiddleNameCustomer='{NameTb.Text}'," +
+                    $"NumberPhoneCustomer='{LastnameTb.Text}'," +
+                    $"EmailCustomer='{EmailTb.Text}'," +
+                    $"DateOfBirthCustomer='{BirthTb.Text}' " +
+                    $"Where IdCustomer='{VariableClass.CustomerId}'",
                     sqlConnection);
                 SqlCommand.ExecuteNonQuery();
                 MBClass.InfoMb($"Данные пользователя " +
-                    $"{LastnameTb.Text} {NameTb.Text} " +
+                    $"{LoginTb.Text} {PasswordTb.Text} " +
                     $"успешно отредактированы");
             }
             catch (Exception ex)
@@ -65,20 +75,20 @@ namespace DU02Talalaev.Window_Folder.UserFolder
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            cB.RoleCBLoad(RoleCb);
             try
             {
                 sqlConnection.Open();
                 SqlCommand = new SqlCommand("Select * from dbo.[Customer] " +
-                    $"Where IdCustomer='{VariableClass.UserId}'",
+                    $"Where idCustomer='{VariableClass.CustomerId}'",
                     sqlConnection);
                 dataReader = SqlCommand.ExecuteReader();
                 dataReader.Read();
                 LoginTb.Text = dataReader[1].ToString();
                 PasswordTb.Text = dataReader[2].ToString();
-                NameTb.Text = dataReader[3].ToString();
-                LastnameTb.Text = dataReader[4].ToString();
-                RoleCb.SelectedValue = dataReader[5].ToString();
+                NameTb.Text = dataReader[4].ToString();
+                LastnameTb.Text = dataReader[3].ToString();
+                EmailTb.Text = dataReader[5].ToString();
+                BirthTb.Text = dataReader[6].ToString();
             }
             catch (Exception ex)
             {
@@ -88,16 +98,6 @@ namespace DU02Talalaev.Window_Folder.UserFolder
             {
                 sqlConnection.Close();
             }
-        }
-
-        private void ExitBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MBClass.ExitMB();
-        }
-
-        private void BackBtn_Click(object sender, RoutedEventArgs e)
-        {
-            new MenuAdminWindow().ShowDialog();
         }
     }
 }

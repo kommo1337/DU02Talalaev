@@ -78,11 +78,11 @@
     <Compile Include="Window Folder\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window Folder\UserFolder\AddDefUserWindow.xaml.cs">
-      <DependentUpon>AddDefUserWindow.xaml</DependentUpon>
+    <Compile Include="Window Folder\UserFolder\AddCustomerWindow.xaml.cs">
+      <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window Folder\UserFolder\EditDefUserWindow.xaml.cs">
-      <DependentUpon>EditDefUserWindow.xaml</DependentUpon>
+    <Compile Include="Window Folder\UserFolder\EditCustomerWindow.xaml.cs">
+      <DependentUpon>EditCustomerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window Folder\UserFolder\MenuUserWindow.xaml.cs">
       <DependentUpon>MenuUserWindow.xaml</DependentUpon>
@@ -115,7 +115,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Page Include="Resurce Folder\Dictionary.xaml">
       <SubType>Designer</SubType>
@@ -141,11 +140,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window Folder\UserFolder\AddDefUserWindow.xaml">
+    <Page Include="Window Folder\UserFolder\AddCustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window Folder\UserFolder\EditDefUserWindow.xaml">
+    <Page Include="Window Folder\UserFolder\EditCustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

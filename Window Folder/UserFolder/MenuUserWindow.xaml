@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DU02Talalaev.Window_Folder.UserFolder"
         mc:Ignorable="d"
-       Title="Меню пользователя" Height="450" Width="800"
+          Title="Меню пользователя" Height="450" Width="800"
         MinHeight="450" MinWidth="800"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
@@ -27,7 +27,8 @@
             <RowDefinition/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-
+        <Image x:Name="LogoIm" Grid.Row="1"
+               Grid.Column="1" Source="/DU02Talalaev;component/Resurce Folder/ImageFolder/Лого ТНС.jpg" />
         <Label Style="{DynamicResource LabelLogoStyle}"
                Content="Меню пользователя" Grid.Column="2" Grid.Row="1"/>
         <Menu Grid.Row="3" Grid.Column="1" 
@@ -37,7 +38,7 @@
                 <MenuItem x:Name="ExitIm" Header="Выход"/>
             </MenuItem>
             <MenuItem x:Name="AddIm" 
-                      Header="Добавить пользователя" Click="AddIm_Click"/>
+                      Header="Добавить заказчика" Click="AddIm_Click"/>
         </Menu>
         <Label Content="Поиск" Grid.Row="5"
                Grid.Column="1"
@@ -54,23 +55,26 @@
                   MouseDoubleClick="ListUserDG_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ п/п"
-                                    Binding="{Binding UserID}"
+                                    Binding="{Binding IdCustomer}"
                                     Width="50"/>
-                <DataGridTextColumn Header="Эл почта"
-                                    Binding="{Binding Email}"
-                                    Width="*"/>
-                <DataGridTextColumn Header="Пароль"
-                                    Binding="{Binding Password}"
+                <DataGridTextColumn Header="Фамилия"
+                                    Binding="{Binding LastNameCustomer}"
                                     Width="*"/>
                 <DataGridTextColumn Header="Имя"
-                                    Binding="{Binding FirstName}"
+                                    Binding="{Binding FirstNameCustomer}"
                                     Width="*"/>
-                <DataGridTextColumn Header="Фамилия"
-                                    Binding="{Binding LastName}"
+                <DataGridTextColumn Header="Отчество"
+                                    Binding="{Binding MiddleNameCustomer}"
                                     Width="*"/>
-                <DataGridTextColumn Header="Роль"
-                                    Binding="{Binding RoleID}"
+                <DataGridTextColumn Header="Номер телефона"
+                                    Binding="{Binding NumberPhoneCustomer}"
                                     Width="*"/>
+                <DataGridTextColumn Header="Эл. почта"
+                                    Width="*"
+                                    Binding="{Binding EmailCustomer}"/>
+                <DataGridTextColumn Header="Дата рождения"
+                                    Width="*"
+                                    Binding="{Binding DateOfBirthCustomer}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
